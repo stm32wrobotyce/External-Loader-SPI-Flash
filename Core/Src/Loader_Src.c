@@ -101,12 +101,12 @@ SectorErase(uint32_t EraseStartAddress, uint32_t EraseEndAddress) {
 	HAL_StatusTypeDef status;
 	int i;
 
-	uint32_t erase_start_sector_nbr, erase_sector_nbr;
+	uint32_t erase_start_sector_nbr, erase_end_sector_nbr;
 
 	erase_start_sector_nbr = EraseStartAddress/SECTOR_SIZE;
-	erase_sector_nbr = EraseEndAddress/SECTOR_SIZE - erase_start_sector_nbr;
+	erase_end_sector_nbr = EraseEndAddress/SECTOR_SIZE;
 
-	for(i = erase_start_sector_nbr; i<erase_sector_nbr; i++)
+	for(i = erase_start_sector_nbr; i <= erase_end_sector_nbr; i++)
 	{
 		status = W25Q64_SectorErase(i);
 
